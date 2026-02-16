@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PA Garage</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="app" class="hidden">
+    <header>
+      <h1>Garage Manager</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section>
+      <h2>Owned Vehicles</h2>
+      <div id="vehicles" class="grid"></div>
+    </section>
+
+    <section class="keys">
+      <h2>Keys</h2>
+      <div class="row">
+        <input id="keyVehicleId" type="number" placeholder="Vehicle ID" />
+        <input id="keyTargetId" type="number" placeholder="Target Player ID" />
+        <button id="giveKeyBtn">Give Key</button>
+        <button id="revokeKeyBtn">Revoke Key</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

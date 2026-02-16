@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PA Housing</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="hint" class="hint hidden"></div>
+  <div id="app" class="hidden">
+    <header>
+      <h1>Realtor & Housing</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section>
+      <h2>Properties</h2>
+      <div id="properties" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>Key Management</h2>
+      <div class="row">
+        <input id="keyProperty" placeholder="Property key" />
+        <input id="keyTarget" type="number" placeholder="Target Player ID" />
+        <button id="shareBtn">Share Key</button>
+        <button id="revokeBtn">Revoke Key</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

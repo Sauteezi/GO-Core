@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Port Aurora MDT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="hidden">
+    <header>
+      <h1>Port Aurora Police MDT</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Duty</h2>
+        <div class="row">
+          <button id="dutyOn">On Duty</button>
+          <button id="dutyOff">Off Duty</button>
+          <button id="statusBusy">Busy</button>
+          <button id="statusAvail">Available</button>
+        </div>
+      </div>
+      <div>
+        <h2>Roster</h2>
+        <div id="roster" class="list"></div>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Person Lookup</h2>
+        <div class="row">
+          <input id="personQuery" placeholder="name or citizen id" />
+          <button id="personLookupBtn">Search</button>
+        </div>
+      </div>
+      <div>
+        <h2>Plate Lookup</h2>
+        <div class="row">
+          <input id="plateQuery" placeholder="plate" />
+          <button id="plateLookupBtn">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Quick Actions</h2>
+      <div class="three-col">
+        <textarea id="citationPayload" placeholder='Citation JSON {"targetCharId":1,"amount":500,"reason":"speeding","offenseCode":"T101"}'></textarea>
+        <textarea id="arrestPayload" placeholder='Arrest JSON {"targetCharId":1,"jailMinutes":15,"charges":"reckless driving"}'></textarea>
+        <textarea id="reportPayload" placeholder='Report JSON {"reportType":"traffic","summary":"...","subjectCharId":1,"location":"Alta St"}'></textarea>
+      </div>
+      <div class="row">
+        <button id="citationBtn">Issue Citation</button>
+        <button id="arrestBtn">Process Arrest</button>
+        <button id="reportBtn">Write Report</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>MDT Records / Legal / Evidence-lite</h2>
+      <div class="three-col">
+        <textarea id="warrantPayload" placeholder='Warrant JSON {"targetCharId":1,"reason":"FTA","expiresHours":48}'></textarea>
+        <textarea id="casePayload" placeholder='Case Note JSON {"targetCharId":1,"caseType":"investigation","note":"Observed near scene."}'></textarea>
+        <textarea id="evidencePayload" placeholder='Evidence JSON {"evidenceType":"gsr","reportId":12,"metadata":{"weapon":"pistol"}}'></textarea>
+      </div>
+      <div class="row">
+        <button id="warrantBtn">Add Warrant</button>
+        <button id="caseBtn">Add Case Note</button>
+        <button id="evidenceBtn">Collect Evidence</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Results</h2>
+      <pre id="results"></pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

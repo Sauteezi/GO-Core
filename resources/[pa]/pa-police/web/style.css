@@ -1,0 +1,22 @@
+:root { color-scheme: dark; font-family: Inter, Segoe UI, sans-serif; }
+body { margin: 0; background: transparent; color: #eaf0ff; }
+.hidden { display: none; }
+#app {
+  width: 1180px; margin: 2vh auto; padding: 16px;
+  background: rgba(10, 16, 28, 0.96);
+  border: 1px solid rgba(98, 166, 255, 0.35);
+  border-radius: 14px;
+}
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px; }
+.panel { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.two-col { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three-col { display:grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.row { display:flex; gap:8px; margin-top: 6px; }
+input, textarea, button {
+  width: 100%; border-radius: 8px; border: 1px solid rgba(123, 177, 255, 0.25);
+  background: rgba(15, 21, 34, 0.95); color: #eaf0ff; padding: 8px;
+}
+textarea { min-height: 76px; }
+button { cursor: pointer; background: linear-gradient(140deg, #2c80ff, #16b4ff); border: none; font-weight: 600; }
+#results { min-height: 160px; max-height: 260px; overflow: auto; background: rgba(0,0,0,0.25); padding: 8px; border-radius: 8px; }
+.list { max-height: 120px; overflow:auto; font-size: 13px; color:#c8d7ff; }

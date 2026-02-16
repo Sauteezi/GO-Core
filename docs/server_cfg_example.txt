@@ -1,0 +1,64 @@
+#############################################
+# Port Aurora - server.cfg example scaffold #
+#############################################
+
+# ---- Core server identity ----
+sv_hostname "Port Aurora | Serious / Semi-Serious RP"
+setr pa:serverName "Port Aurora"
+
+# ---- Database connection ----
+# Replace with your real credentials.
+set mysql_connection_string "mysql://username:password@127.0.0.1/port_aurora?charset=utf8mb4"
+
+# ---- Optional Discord webhooks ----
+# Leave blank to disable any webhook route.
+setr pa:webhook:admin ""
+setr pa:webhook:police ""
+setr pa:webhook:economy ""
+
+# ---- Logging sinks ----
+setr pa:log:sinkConsole "true"
+setr pa:log:sinkDb "true"
+setr pa:log:sinkWebhook "false"
+setr pa:webhook:logging ""
+
+# ---- Feature toggles ----
+setr pa:feature:enablePolice "true"
+setr pa:feature:enableFire "true"
+setr pa:feature:enableDoJ "true"
+setr pa:feature:enableStoryEvents "true"
+
+# ---- Dependencies (required) ----
+ensure oxmysql
+ensure ox_lib
+ensure pma-voice
+ensure ox_target
+
+# ---- Port Aurora foundation ----
+ensure pa-shared
+ensure pa-core
+ensure pa-logging
+ensure pa-perms
+ensure pa-economy
+ensure pa-inventory
+ensure pa-ui
+ensure pa-hud
+
+# ---- Port Aurora gameplay and platform modules ----
+ensure pa-jobs
+ensure pa-vehicles
+ensure pa-housing
+ensure pa-dispatch
+ensure pa-police
+ensure pa-ems
+ensure pa-fire
+ensure pa-crime
+ensure pa-factions
+ensure pa-doj
+ensure pa-media
+ensure pa-story
+ensure pa-admin
+ensure pa-guard
+ensure pa-bridge-qb
+ensure pa-bridge-esx
+ensure pa-devtools

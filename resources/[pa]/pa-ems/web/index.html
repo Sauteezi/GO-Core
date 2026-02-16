@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Port Aurora EMS</title><link rel="stylesheet" href="style.css"/>
+</head><body>
+<main id="app" class="hidden">
+  <header><h1>Port Aurora EMS</h1><button id="closeBtn">Close</button></header>
+  <section class="panel">
+    <h2>Duty</h2>
+    <div class="row"><button id="dutyOn">On Duty</button><button id="dutyOff">Off Duty</button></div>
+  </section>
+  <section class="panel two-col">
+    <div>
+      <h2>EMS Actions</h2>
+      <textarea id="revivePayload" placeholder='{"targetSrc":12}'></textarea>
+      <div class="row"><button id="reviveBtn">Revive</button></div>
+      <textarea id="transportPayload" placeholder='{"targetSrc":12,"bedId":"pillbox-1"}'></textarea>
+      <div class="row"><button id="transportBtn">Transport</button></div>
+      <textarea id="billPayload" placeholder='{"patientSrc":12,"baseAmount":850,"reason":"major_treatment"}'></textarea>
+      <div class="row"><button id="billBtn">Bill Patient</button></div>
+    </div>
+    <div>
+      <h2>Records + Injury</h2>
+      <textarea id="recordPayload" placeholder='{"patientSrc":12,"diagnosis":"trauma","treatment":"stabilized","billingAmount":850}'></textarea>
+      <div class="row"><button id="recordBtn">Record Major Incident</button></div>
+      <div class="row"><button data-injury="minor">Minor</button><button data-injury="major">Major</button><button data-injury="critical">Critical</button></div>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Good Samaritan (Civilian)</h2>
+    <textarea id="callPayload" placeholder='{"description":"Person collapsed outside City Hall.","priority":"high"}'></textarea>
+    <div class="row"><button id="callBtn">Call 911</button></div>
+    <textarea id="cprPayload" placeholder='{"targetSrc":12}'></textarea>
+    <div class="row"><button id="cprBtn">Basic CPR</button></div>
+  </section>
+  <section class="panel"><h2>Result</h2><pre id="result"></pre></section>
+</main>
+<script src="app.js"></script>
+</body></html>

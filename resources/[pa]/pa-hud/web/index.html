@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PA HUD</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="hud" class="hud hidden">
+    <div class="stats">
+      <div class="stat"><span>HP</span><b id="health">0</b></div>
+      <div class="stat"><span>AR</span><b id="armor">0</b></div>
+      <div class="stat"><span>Hunger</span><b id="hunger">100</b></div>
+      <div class="stat"><span>Thirst</span><b id="thirst">100</b></div>
+      <div class="stat"><span>Stress</span><b id="stress">0</b></div>
+    </div>
+
+    <div class="status-line">
+      <span id="voice" class="pill">Voice: idle</span>
+      <span id="radio" class="pill">Radio: off</span>
+    </div>
+
+    <div class="money">
+      <span>Cash $<b id="cash">0</b></span>
+      <span>Bank $<b id="bank">0</b></span>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

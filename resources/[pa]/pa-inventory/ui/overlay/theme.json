@@ -1,0 +1,30 @@
+{
+  "name": "Port Aurora Inventory",
+  "version": "1.0.0",
+  "colors": {
+    "bg": "#0b1220",
+    "panel": "#131d31",
+    "panelAlt": "#1a2741",
+    "border": "#2a3a5f",
+    "text": "#e6edf7",
+    "muted": "#9fb1cf",
+    "accent": "#59a5ff",
+    "success": "#3ddc97",
+    "warn": "#ffb84d",
+    "danger": "#ff6b6b",
+    "illegal": "#ef4444",
+    "evidence": "#f59e0b"
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24
+  },
+  "radius": {
+    "sm": 8,
+    "md": 12,
+    "lg": 16
+  }
+}
