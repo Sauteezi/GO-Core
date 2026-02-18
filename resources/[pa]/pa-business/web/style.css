@@ -1,0 +1,15 @@
+:root { --bg:#0b1220; --panel:#132036; --border:#2b3d60; --text:#e8f0ff; --muted:#9ab0d2; --accent:#59a5ff; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; color: var(--text); }
+.hidden { display:none !important; }
+#app { width:min(1050px,95vw); margin:5vh auto; background:rgba(11,18,32,.94); border:1px solid var(--border); border-radius:14px; padding:14px; }
+header { display:flex; justify-content:space-between; align-items:center; }
+h1,h2 { margin: 0 0 8px; }
+section { margin-top: 12px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px; }
+.muted { color: var(--muted); font-size: 12px; }
+.row { display:grid; grid-template-columns:repeat(5,minmax(120px,1fr)) auto; gap:8px; margin-bottom:8px; }
+input,button { background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px; }
+button { cursor:pointer; }
+button:hover { border-color: var(--accent); }

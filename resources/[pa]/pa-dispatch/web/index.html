@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Port Aurora Dispatch</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="hidden">
+    <header>
+      <h1>Port Aurora Dispatch</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section class="create-call">
+      <h2>Create Call</h2>
+      <div class="row">
+        <input id="type" placeholder="Type (medical, shots_fired...)" />
+        <select id="priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+          <option value="critical">Critical</option>
+        </select>
+      </div>
+      <textarea id="description" placeholder="Describe the incident..."></textarea>
+      <button id="createBtn">Create Call</button>
+    </section>
+
+    <section>
+      <h2>Active Calls</h2>
+      <div id="feed"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

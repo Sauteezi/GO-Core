@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PA Business</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="app" class="hidden">
+    <header>
+      <h1>Business Management</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section>
+      <h2>Your Businesses</h2>
+      <div id="businesses" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>Invoices</h2>
+      <div class="row">
+        <input id="targetSrc" type="number" placeholder="Target ID" />
+        <input id="businessId" placeholder="Business ID" />
+        <input id="amount" type="number" placeholder="Amount" />
+        <input id="reason" placeholder="Reason" />
+        <button id="createInvoiceBtn">Create Invoice</button>
+      </div>
+      <div id="invoices" class="grid"></div>
+    </section>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

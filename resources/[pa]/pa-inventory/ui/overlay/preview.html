@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>PA Inventory Skin Preview</title>
+  <link rel="stylesheet" href="./pa_inventory_skin.css" />
+  <style>body{background:#050b15;font-family:Inter,Arial,sans-serif;padding:20px}.inventory-root{max-width:1200px;margin:0 auto}</style>
+</head>
+<body>
+  <div class="inventory-root">
+    <aside class="inventory-categories pa-inventory-column">
+      <h3>Categories</h3>
+      <div class="pa-categories">
+        <button class="pa-category-btn is-active">All</button>
+        <button class="pa-category-btn">Food</button>
+        <button class="pa-category-btn">Medical</button>
+        <button class="pa-category-btn">Evidence</button>
+      </div>
+    </aside>
+    <main class="inventory-grid pa-inventory-column">
+      <h3>Inventory Grid</h3>
+      <div class="pa-grid">
+        <div class="pa-slot" data-illegal="false"></div>
+        <div class="pa-slot" data-evidence="true"></div>
+        <div class="pa-slot" data-illegal="true"></div>
+        <div class="pa-slot"></div><div class="pa-slot"></div><div class="pa-slot"></div>
+      </div>
+    </main>
+    <section class="inventory-details pa-inventory-column">
+      <h3 class="pa-details-title">Item Details</h3>
+      <p>Portable Radio</p>
+      <p style="color:#9fb1cf">Secure channel communications.</p>
+      <div class="pa-actions">
+        <button class="pa-action-btn">Use</button>
+        <button class="pa-action-btn">Drop</button>
+        <button class="pa-action-btn">Give</button>
+        <button class="pa-action-btn">Split</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Port Aurora Character Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="hint" class="interaction-hint hidden"></div>
+  <div id="toast-container" class="toast-container"></div>
+
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <h3 id="modal-title">Confirm</h3>
+      <p id="modal-message"></p>
+      <div class="actions">
+        <button id="modal-cancel" class="secondary">Cancel</button>
+        <button id="modal-confirm" class="danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="prompt-backdrop" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <h3>Input required</h3>
+      <p id="prompt-text"></p>
+      <input id="prompt-input" maxlength="120" />
+      <div class="actions">
+        <button id="prompt-cancel" class="secondary">Cancel</button>
+        <button id="prompt-submit">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="progress" class="progress hidden">
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    <small id="progress-label">Working...</small>
+  </div>
+
+  <div id="app" class="hidden">
+    <header>
+      <h1>Port Aurora Character Hub</h1>
+      <p id="status">Loading...</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Your Characters</h2>
+        <div id="character-list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Create Character</h2>
+        <form id="create-form">
+          <label>First Name <input id="firstName" required minlength="2" maxlength="32" /></label>
+          <label>Last Name <input id="lastName" required minlength="2" maxlength="32" /></label>
+          <label>Date of Birth <input id="dob" type="date" required /></label>
+          <label>Gender
+            <select id="gender">
+              <option value="unspecified">Unspecified</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="non-binary">Non-binary</option>
+            </select>
+          </label>
+          <label class="toggle"><input id="skipTutorial" type="checkbox" /> Skip tutorial</label>
+          <button type="submit">Create Character</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Spawn Selection</h2>
+        <div id="spawn-list" class="list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
