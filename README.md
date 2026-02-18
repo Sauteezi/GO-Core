@@ -88,6 +88,7 @@ All custom resources are prefixed with `pa-`.
   - `docs/13-DispatchSystem.md`
   - `docs/14-PoliceSystem.md`
   - `docs/15-EMSSystem.md`
+  - `docs/16-CrimeCore.md`
   - `docs/server_cfg_example.txt`
 5. Copy `docs/server_cfg_example.txt` into your `server.cfg` and adjust credentials/webhooks.
 
@@ -152,6 +153,22 @@ Design targets:
 - visible illegal/evidence item markers
 
 See `docs/06-InventoryUISkin.md` for exact changed files and rebase instructions.
+
+
+## pa-crime core (heat, cases, dirty money, laundering)
+
+`pa-crime` now provides shared illegal activity foundations:
+
+- server-validated illegal activity events (rate limit, distance, cooldown, required item checks)
+- dirty money consequences through `heat_events` and persistent `crime_cases`
+- configurable laundering through approved businesses (fees, logs, and heat risk)
+- decaying short-term heat so play remains fun, while case evidence persists for long-term consequences
+
+Primary exports:
+- `PaCrime:CommitIllegalActivity(src, payload)`
+- `PaCrime:LaunderMoney(src, businessId, amount, payload)`
+- `PaCrime:CanAccessBlackMarket(src, payload)`
+- `PaCrime:GetHeat(src)`
 
 ## pa-logging (Structured Logging)
 

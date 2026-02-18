@@ -4,19 +4,29 @@ Use this guide when adding a new criminal activity or chain.
 
 ## Step-by-step
 
-1. Define crime data in `pa-crime` (requirements, rewards, cooldowns).
-2. Add economy outcomes in `pa-economy`.
-3. Add item outcomes in `pa-inventory`.
-4. Add response hooks for `pa-police` / `pa-dispatch`.
-5. Add legal interactions in `pa-doj` if needed.
+1. Define crime activity data (required item, cooldown, heat/evidence values).
+2. Call `PaCrime:CommitIllegalActivity(src, payload)` from your server event.
+3. If rewards include money, use `pa-economy` (dirty account for illegal payouts).
+4. Add follow-up hooks for `pa-police` / `pa-dispatch` / `pa-doj` as needed.
 
-## Security principles
+## Required server validations
 
-- Keep all validation server-side.
-- Never trust client-reported success/failure states.
-- Add anti-abuse checks and logging.
+Every illegal event should enforce:
+
+- rate limit (`PaGuard:RateLimit`),
+- distance check (`PaGuard:ValidateDistance`),
+- cooldown,
+- required item checks (`PaInventory:HasItem`).
+
+`PaCrime:CommitIllegalActivity(...)` already applies these checks when payload fields are provided.
+
+## Consequence model
+
+- Emit heat for every illegal activity (`heat_events`).
+- Optionally add evidence to a persistent case (`crime_cases`).
+- Let short-term heat decay over time, but keep case evidence for longer-term consequences.
 
 ## Naming rules
 
-- Event example: `pa:crime:startBoost`
-- Export example: `PaCanStartCrime`
+- Event examples: `pa:crime:requestRobbery`, `pa:crime:commitIllegalActivity`
+- Export examples: `PaCrime:CommitIllegalActivity`, `PaCrime:LaunderMoney`

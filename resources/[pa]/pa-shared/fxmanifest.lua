@@ -14,6 +14,7 @@ server_scripts {
     'shared/licenses.lua',
     'shared/story_chapters.lua',
     'shared/economy.lua',
+    'shared/crime.lua',
     'shared/businesses.lua',
     'shared/housing.lua',
     'shared/strings.lua',

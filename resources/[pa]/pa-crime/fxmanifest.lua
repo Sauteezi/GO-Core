@@ -8,5 +8,6 @@ version '0.2.0'
 
 server_scripts {
     'server/dependency_check.lua',
+    'server/crime_service.lua',
     'server/robbery_guarded.lua',
 }

@@ -6,8 +6,12 @@ local REQUIRED_DEPENDENCIES = {
     { name = 'pma-voice', reason = 'Required before pa-crime can initialize safely.' },
     { name = 'ox_target', reason = 'Required before pa-crime can initialize safely.' },
     { name = 'pa-core', reason = 'pa-core is the only hard gameplay dependency and must start first.' },
+    { name = 'pa-shared', reason = 'Required for crime heat/evidence/laundering config defaults.' },
     { name = 'pa-logging', reason = 'pa-logging is required for economy/inventory/perms/admin/suspicious behavior audit traces.' },
     { name = 'pa-guard', reason = 'pa-guard provides shared rate-limit and distance validation safety checks.' },
+    { name = 'pa-business', reason = 'Required for business-based laundering access rules.' },
+    { name = 'pa-inventory', reason = 'Required for illegal action required-item validation.' },
+    { name = 'pa-economy', reason = 'Required for dirty money account support and laundering transactions.' },
 }
 
 local function printDependencyError(missingDependency, reason)

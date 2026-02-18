@@ -45,7 +45,10 @@ ensure pa-ui
 ensure pa-hud
 
 # ---- Port Aurora gameplay and platform modules ----
+ensure pa-guard
+ensure pa-target
 ensure pa-jobs
+ensure pa-business
 ensure pa-vehicles
 ensure pa-housing
 ensure pa-dispatch
@@ -58,7 +61,11 @@ ensure pa-doj
 ensure pa-media
 ensure pa-story
 ensure pa-admin
-ensure pa-guard
+ensure pa-job-delivery
+ensure pa-job-taxi
+ensure pa-job-sanitation
+ensure pa-job-tow
+ensure pa-job-construction
 ensure pa-bridge-qb
 ensure pa-bridge-esx
 ensure pa-devtools

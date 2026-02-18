@@ -29,33 +29,30 @@ RegisterNetEvent('pa:crime:requestRobbery', function(payload)
     local src = source
     payload = type(payload) == 'table' and payload or {}
 
-    local allowed, rateMeta = exports['pa-guard']['PaGuard:RateLimit'](src, 'crime:robbery', 2, 20000)
-    if not allowed then
-        logWarn(src, 'robbery_rate_limit', 'Blocked robbery request due to rate limit.', rateMeta)
-        notify(src, 'warn', 'Rate limit', 'Too many robbery requests in a short time.')
+    local ok, err, result = exports['pa-crime']['PaCrime:CommitIllegalActivity'](src, {
+        activityKey = 'robbery',
+        eventType = 'robbery',
+        targetCoords = payload.robberyCoords,
+        maxDistance = 6.0,
+        cooldownMs = 45000,
+        requiredItem = payload.requiredItem or 'lockpick',
+        requiredItemCount = payload.requiredItemCount or 1,
+        heatDelta = payload.heatDelta or 12,
+        evidenceChance = payload.evidenceChance or 0.35,
+        summary = 'Robbery action validated and processed server-side.',
+        evidenceNote = 'Forced entry traces recovered from robbery scene.',
+    })
+
+    if not ok then
+        logWarn(src, 'robbery_blocked', 'Blocked robbery request after crime validation.', {
+            reason = err,
+            coords = payload.robberyCoords,
+        })
+        notify(src, 'error', 'Robbery blocked', err or 'Validation failed.')
+        TriggerClientEvent('pa:crime:robberyResult', src, { ok = false, error = err })
         return
     end
 
-    local distanceOk, distMeta = exports['pa-guard']['PaGuard:ValidateDistance'](src, payload.robberyCoords, 6.0)
-    if not distanceOk then
-        logWarn(src, 'robbery_distance_invalid', 'Blocked robbery request due to distance validation.', distMeta)
-        notify(src, 'error', 'Distance check failed', 'You are too far from the robbery target.')
-        return
-    end
-
-    if GetResourceState('pa-logging') == 'started' then
-        pcall(function()
-            exports['pa-logging']['PaLogging:LogAudit']({
-                resource = RESOURCE_NAME,
-                source = src,
-                action = 'robbery_request',
-                message = 'Guarded robbery request accepted for server-side processing.',
-                actorLicense = exports['pa-core']['PaCore:GetLicense'](src),
-                meta = { distance = distMeta and distMeta.distance },
-            })
-        end)
-    end
-
-    TriggerClientEvent('pa:crime:robberyResult', src, { ok = true })
-    notify(src, 'success', 'Robbery request', 'Robbery request accepted for server processing.')
+    notify(src, 'success', 'Robbery request', ('Robbery accepted. Heat: %s (Case #%s).'):format(result.heat, result.caseId))
+    TriggerClientEvent('pa:crime:robberyResult', src, { ok = true, result = result })
 end)

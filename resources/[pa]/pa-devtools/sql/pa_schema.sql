@@ -439,13 +439,21 @@ CREATE TABLE IF NOT EXISTS fire_incidents (
 CREATE TABLE IF NOT EXISTS crime_cases (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     suspect_char_id BIGINT UNSIGNED NULL,
-    case_status ENUM('open','investigating','closed') NOT NULL DEFAULT 'open',
+    case_status ENUM('open','investigating','closed','raided') NOT NULL DEFAULT 'open',
+    title VARCHAR(128) NULL,
     heat_score INT NOT NULL DEFAULT 0,
+    evidence_score INT NOT NULL DEFAULT 0,
+    warrant_recommended TINYINT(1) NOT NULL DEFAULT 0,
     summary TEXT NULL,
+    evidence_json JSON NULL,
+    last_heat_at TIMESTAMP NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_crime_cases_suspect_char FOREIGN KEY (suspect_char_id) REFERENCES characters(id) ON DELETE SET NULL,
     KEY idx_crime_cases_suspect_char_id (suspect_char_id),
+    KEY idx_crime_cases_status (case_status),
+    KEY idx_crime_cases_warrant_recommended (warrant_recommended),
+    KEY idx_crime_cases_last_heat_at (last_heat_at),
     KEY idx_crime_cases_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -455,11 +463,14 @@ CREATE TABLE IF NOT EXISTS heat_events (
     case_id BIGINT UNSIGNED NULL,
     event_type VARCHAR(64) NOT NULL,
     heat_delta INT NOT NULL,
+    coords_json JSON NULL,
+    meta_json JSON NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_heat_events_char FOREIGN KEY (char_id) REFERENCES characters(id) ON DELETE SET NULL,
     CONSTRAINT fk_heat_events_case FOREIGN KEY (case_id) REFERENCES crime_cases(id) ON DELETE SET NULL,
     KEY idx_heat_events_char_id (char_id),
     KEY idx_heat_events_case_id (case_id),
+    KEY idx_heat_events_event_type (event_type),
     KEY idx_heat_events_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

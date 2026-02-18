@@ -50,7 +50,7 @@ local function getConfigByName(name)
     local config = registry[name]
 
     if not config then
-        error(('Unknown shared config "%s". Valid names: items, jobs, factions, licenses, story_chapters, economy, strings.'):format(name), 2)
+        error(('Unknown shared config "%s". Valid names: items, jobs, factions, licenses, story_chapters, economy, businesses, housing, crime, strings.'):format(name), 2)
     end
 
     return freezeTable(deepCopy(config))
@@ -79,6 +79,9 @@ AddEventHandler('onResourceStart', function(resourceName)
         'licenses',
         'story_chapters',
         'economy',
+        'businesses',
+        'housing',
+        'crime',
         'strings',
     }
 
