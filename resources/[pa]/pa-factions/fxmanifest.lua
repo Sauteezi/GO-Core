@@ -4,6 +4,9 @@ game 'gta5'
 name 'pa-factions'
 author 'Port Aurora'
 description 'Port Aurora resource: pa-factions'
-version '0.1.0'
+version '0.2.0'
 
-server_script 'server/dependency_check.lua'
+server_scripts {
+    'server/dependency_check.lua',
+    'server/faction_service.lua',
+}

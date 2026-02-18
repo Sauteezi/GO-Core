@@ -89,6 +89,7 @@ All custom resources are prefixed with `pa-`.
   - `docs/14-PoliceSystem.md`
   - `docs/15-EMSSystem.md`
   - `docs/16-CrimeCore.md`
+  - `docs/17-FactionsSystem.md`
   - `docs/server_cfg_example.txt`
 5. Copy `docs/server_cfg_example.txt` into your `server.cfg` and adjust credentials/webhooks.
 
@@ -169,6 +170,26 @@ Primary exports:
 - `PaCrime:LaunderMoney(src, businessId, amount, payload)`
 - `PaCrime:CanAccessBlackMarket(src, payload)`
 - `PaCrime:GetHeat(src)`
+
+
+## pa-factions (gangs, org crime, and legal factions)
+
+`pa-factions` now supports gangs, biker clubs, syndicates, rare cartels, and legal org groups:
+
+- rank-based member permissions
+- optional territory zones with slow pressure/influence shifts
+- faction storage with controlled access
+- faction treasury using business account tables
+- front-business links for laundering and RP story hooks
+
+Primary exports:
+- `PaFactions:GetFaction(src)`
+- `PaFactions:HasPermission(src, permission)`
+- `PaFactions:SetMemberFaction(actorSrc, targetSrc, factionId, rankName)`
+- `PaFactions:AddTerritoryPressure(src, factionId, territoryKey, actionType, payload)`
+- `PaFactions:DepositFunds(src, factionId, amount, reason)`
+- `PaFactions:WithdrawFunds(src, factionId, amount, reason)`
+- `PaFactions:LinkFrontBusiness(actorSrc, factionId, businessKey, launderingEnabled)`
 
 ## pa-logging (Structured Logging)
 

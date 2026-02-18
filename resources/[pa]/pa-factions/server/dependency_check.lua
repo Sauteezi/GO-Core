@@ -6,7 +6,14 @@ local REQUIRED_DEPENDENCIES = {
     { name = 'pma-voice', reason = 'Required before pa-factions can initialize safely.' },
     { name = 'ox_target', reason = 'Required before pa-factions can initialize safely.' },
     { name = 'pa-core', reason = 'pa-core is the only hard gameplay dependency and must start first.' },
+    { name = 'pa-perms', reason = 'Required for admin/staff fallback access in faction management.' },
     { name = 'pa-logging', reason = 'pa-logging is required for economy/inventory/perms/admin/suspicious behavior audit traces.' },
+    { name = 'pa-crime', reason = 'Required for faction-linked laundering actions.' },
+    { name = 'pa-inventory', reason = 'Required for faction storage access patterns.' },
+    { name = 'pa-guard', reason = 'Required for territory pressure validation and anti-spam checks.' },
+    { name = 'pa-business', reason = 'Required for faction front-business linking.' },
+    { name = 'pa-economy', reason = 'Required for faction funds and payouts.' },
+    { name = 'pa-shared', reason = 'Required for faction config/ranks/territory definitions.' },
 }
 
 local function printDependencyError(missingDependency, reason)

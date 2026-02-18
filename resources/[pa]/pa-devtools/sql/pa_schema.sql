@@ -498,6 +498,17 @@ CREATE TABLE IF NOT EXISTS faction_territory (
     KEY idx_faction_territory_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS faction_fronts (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    faction_name VARCHAR(64) NOT NULL,
+    business_key VARCHAR(64) NOT NULL,
+    laundering_enabled TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_faction_fronts_pair (faction_name, business_key),
+    KEY idx_faction_fronts_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS reputation (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     char_id BIGINT UNSIGNED NOT NULL,
