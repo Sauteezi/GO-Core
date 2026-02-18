@@ -56,6 +56,11 @@ ensure pa-police
 ensure pa-ems
 ensure pa-fire
 ensure pa-crime
+ensure pa-heists
+ensure pa-drugs
+ensure pa-boosting
+ensure pa-robbery-houses
+ensure pa-robbery-stores
 ensure pa-factions
 ensure pa-doj
 ensure pa-media

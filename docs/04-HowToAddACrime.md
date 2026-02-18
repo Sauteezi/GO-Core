@@ -30,3 +30,15 @@ Every illegal event should enforce:
 
 - Event examples: `pa:crime:requestRobbery`, `pa:crime:commitIllegalActivity`
 - Export examples: `PaCrime:CommitIllegalActivity`, `PaCrime:LaunderMoney`
+
+
+## Tiered activity modules
+
+Use these dedicated modules for progression content:
+- `pa-robbery-stores`
+- `pa-robbery-houses`
+- `pa-boosting`
+- `pa-drugs`
+- `pa-heists`
+
+All tier balancing should be done in `resources/[pa]/pa-shared/shared/crime_activities.lua`.

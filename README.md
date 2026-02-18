@@ -36,6 +36,11 @@ This repository provides a clean starting structure for all Port Aurora resource
   pa-ems
   pa-fire
   pa-crime
+  pa-robbery-stores
+  pa-robbery-houses
+  pa-boosting
+  pa-drugs
+  pa-heists
   pa-factions
   pa-doj
   pa-media
@@ -90,6 +95,7 @@ All custom resources are prefixed with `pa-`.
   - `docs/15-EMSSystem.md`
   - `docs/16-CrimeCore.md`
   - `docs/17-FactionsSystem.md`
+  - `docs/18-CrimeActivities.md`
   - `docs/server_cfg_example.txt`
 5. Copy `docs/server_cfg_example.txt` into your `server.cfg` and adjust credentials/webhooks.
 
@@ -190,6 +196,26 @@ Primary exports:
 - `PaFactions:DepositFunds(src, factionId, amount, reason)`
 - `PaFactions:WithdrawFunds(src, factionId, amount, reason)`
 - `PaFactions:LinkFrontBusiness(actorSrc, factionId, businessKey, launderingEnabled)`
+
+
+## crime activity modules (tiered progression)
+
+The following modules implement tiered crime progression with shared config + server-authoritative state:
+
+- `pa-robbery-stores` (small jobs)
+- `pa-robbery-houses` (mid-tier break-ins)
+- `pa-boosting` (vehicle jobs)
+- `pa-drugs` (supply-chain loops)
+- `pa-heists` (late-game operations)
+
+Each module supports:
+- unlock gates by license/reputation/faction rank
+- server-side run state and completion validation
+- dirty-money payouts through `pa-economy`
+- RP hook events (hostages, negotiators, fences, chop shops, informants)
+
+Balancing source of truth:
+- `resources/[pa]/pa-shared/shared/crime_activities.lua`
 
 ## pa-logging (Structured Logging)
 
