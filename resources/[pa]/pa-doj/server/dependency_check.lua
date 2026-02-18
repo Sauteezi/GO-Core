@@ -6,7 +6,10 @@ local REQUIRED_DEPENDENCIES = {
     { name = 'pma-voice', reason = 'Required before pa-doj can initialize safely.' },
     { name = 'ox_target', reason = 'Required before pa-doj can initialize safely.' },
     { name = 'pa-core', reason = 'pa-core is the only hard gameplay dependency and must start first.' },
-    { name = 'pa-logging', reason = 'pa-logging is required for economy/inventory/perms/admin/suspicious behavior audit traces.' },
+    { name = 'pa-perms', reason = 'Required for staff whitelist permission patterns.' },
+    { name = 'pa-police', reason = 'Required for report/citation/warrant/evidence docket references.' },
+    { name = 'pa-logging', reason = 'Required for judicial action audit logs.' },
+    { name = 'pa-ui', reason = 'Required for beginner-friendly DOJ NUI notifications.' },
 }
 
 local function printDependencyError(missingDependency, reason)

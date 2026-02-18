@@ -344,6 +344,69 @@ CREATE TABLE IF NOT EXISTS police_warrants (
     KEY idx_police_warrants_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS doj_cases (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(128) NOT NULL,
+    status ENUM('draft','scheduled','in_session','closed') NOT NULL DEFAULT 'draft',
+    defendant_char_id BIGINT UNSIGNED NOT NULL,
+    created_by_char_id BIGINT UNSIGNED NOT NULL,
+    assigned_judge_char_id BIGINT UNSIGNED NULL,
+    scheduled_for TIMESTAMP NULL,
+    bail_amount BIGINT NOT NULL DEFAULT 0,
+    summary TEXT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_doj_cases_defendant FOREIGN KEY (defendant_char_id) REFERENCES characters(id) ON DELETE CASCADE,
+    CONSTRAINT fk_doj_cases_created_by FOREIGN KEY (created_by_char_id) REFERENCES characters(id) ON DELETE CASCADE,
+    CONSTRAINT fk_doj_cases_judge FOREIGN KEY (assigned_judge_char_id) REFERENCES characters(id) ON DELETE SET NULL,
+    KEY idx_doj_cases_defendant (defendant_char_id),
+    KEY idx_doj_cases_status (status),
+    KEY idx_doj_cases_scheduled_for (scheduled_for),
+    KEY idx_doj_cases_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS doj_case_links (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    case_id BIGINT UNSIGNED NOT NULL,
+    link_type ENUM('report','citation','warrant','evidence') NOT NULL,
+    reference_id BIGINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_doj_case_links_case FOREIGN KEY (case_id) REFERENCES doj_cases(id) ON DELETE CASCADE,
+    KEY idx_doj_case_links_case (case_id),
+    KEY idx_doj_case_links_type_ref (link_type, reference_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS doj_court_sessions (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    case_id BIGINT UNSIGNED NOT NULL,
+    scheduled_for TIMESTAMP NOT NULL,
+    status ENUM('scheduled','in_session','adjourned','completed','cancelled') NOT NULL DEFAULT 'scheduled',
+    notes TEXT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_doj_court_sessions_case FOREIGN KEY (case_id) REFERENCES doj_cases(id) ON DELETE CASCADE,
+    KEY idx_doj_court_sessions_case (case_id),
+    KEY idx_doj_court_sessions_scheduled_for (scheduled_for)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS doj_plea_deals (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    case_id BIGINT UNSIGNED NOT NULL,
+    proposed_by_char_id BIGINT UNSIGNED NOT NULL,
+    proposed_role ENUM('prosecutor','public_defender') NOT NULL,
+    plea_text TEXT NOT NULL,
+    recommended_bail BIGINT NOT NULL DEFAULT 0,
+    status ENUM('proposed','accepted','rejected','withdrawn') NOT NULL DEFAULT 'proposed',
+    reviewed_at TIMESTAMP NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_doj_plea_case FOREIGN KEY (case_id) REFERENCES doj_cases(id) ON DELETE CASCADE,
+    CONSTRAINT fk_doj_plea_proposed_by FOREIGN KEY (proposed_by_char_id) REFERENCES characters(id) ON DELETE CASCADE,
+    KEY idx_doj_plea_case (case_id),
+    KEY idx_doj_plea_status (status),
+    KEY idx_doj_plea_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS police_case_notes (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     officer_char_id BIGINT UNSIGNED NOT NULL,

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PA DOJ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="hidden">
+    <header>
+      <h1>Port Aurora DOJ</h1>
+      <button id="closeBtn">Close</button>
+    </header>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Docket</h2>
+        <div id="docketList" class="list"></div>
+      </article>
+
+      <article class="panel">
+        <h2>Case Actions</h2>
+        <p class="hint">Templates are intentionally short for beginner-friendly workflow.</p>
+
+        <label>Title <input id="caseTitle" placeholder="Arraignment Review" /></label>
+        <label>Defendant Char ID <input id="defCharId" type="number" /></label>
+        <label>Summary <textarea id="caseSummary" rows="3"></textarea></label>
+        <button id="createCaseBtn">Create Case</button>
+
+        <hr />
+
+        <label>Case ID <input id="scheduleCaseId" type="number" /></label>
+        <label>Day of Week (1=Mon) <input id="courtDay" type="number" value="3" /></label>
+        <label>Hour (24h) <input id="courtHour" type="number" value="20" /></label>
+        <button id="scheduleBtn">Schedule Weekly Court</button>
+
+        <hr />
+
+        <label>Plea Case ID <input id="pleaCaseId" type="number" /></label>
+        <label>Plea Text <textarea id="pleaText" rows="2">Recommend reduced sentence for cooperation.</textarea></label>
+        <label>Recommended Bail <input id="pleaBail" type="number" value="5000" /></label>
+        <button id="proposePleaBtn">Propose Plea</button>
+      </article>
+
+      <article class="panel">
+        <h2>Judge Actions</h2>
+        <label>Warrant Target Char ID <input id="warrantTarget" type="number" /></label>
+        <label>Reason <textarea id="warrantReason" rows="2">Court-approved warrant based on submitted docket evidence.</textarea></label>
+        <button id="issueWarrantBtn">Issue Warrant</button>
+
+        <hr />
+
+        <label>Bail Case ID <input id="bailCaseId" type="number" /></label>
+        <label>Bail Amount <input id="bailAmount" type="number" value="15000" /></label>
+        <button id="setBailBtn">Set Bail</button>
+
+        <hr />
+
+        <label>Plea ID <input id="reviewPleaId" type="number" /></label>
+        <button id="acceptPleaBtn">Accept Plea</button>
+        <button id="rejectPleaBtn">Reject Plea</button>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

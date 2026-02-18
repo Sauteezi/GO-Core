@@ -96,6 +96,7 @@ All custom resources are prefixed with `pa-`.
   - `docs/16-CrimeCore.md`
   - `docs/17-FactionsSystem.md`
   - `docs/18-CrimeActivities.md`
+  - `docs/19-DOJSystem.md`
   - `docs/server_cfg_example.txt`
 5. Copy `docs/server_cfg_example.txt` into your `server.cfg` and adjust credentials/webhooks.
 
@@ -216,6 +217,24 @@ Each module supports:
 
 Balancing source of truth:
 - `resources/[pa]/pa-shared/shared/crime_activities.lua`
+
+
+## pa-doj (courts, warrants, evidence use)
+
+`pa-doj` now provides a beginner-friendly judicial workflow:
+
+- DOJ whitelist roles via `staff_roles`: `judge`, `prosecutor`, `public_defender`
+- case docket that links police reports, citations, warrants, and evidence refs
+- weekly court scheduling for predictable sessions
+- plea deal proposal/review flow
+- judge-only warrant issuance + bail setting (server-validated)
+- clear judicial action logging for audits
+
+Primary exports:
+- `PaDOJ:HasRole(src, role)`
+- `PaDOJ:HasAny(src, roles)`
+- `PaDOJ:Require(src, roles, failMessage)`
+- `PaDOJ:GetDocket(src)`
 
 ## pa-logging (Structured Logging)
 
